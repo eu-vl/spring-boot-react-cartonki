@@ -1,0 +1,8 @@
+com\backend\models\Card.class
+com\backend\models\Todo.class
+com\backend\Program.class
+com\backend\models\Team.class
+com\backend\models\Role.class
+com\backend\models\Room.class
+com\backend\models\Block.class
+com\backend\models\User.class
