@@ -1,1 +1,1 @@
-# spring-boot-react-admin-panel
+# spring-boot-react-cartonki
