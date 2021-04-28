@@ -8,6 +8,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("auth")
 public class AuthController {
@@ -22,15 +25,15 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
+    @PostMapping("login")
+    public ResponseEntity<AuthResponse> login(@Valid AuthRequest authRequest) {
         User user = userService.getUserByEmailAndPassword(authRequest.getEmail(), authRequest.getPassword());
         String token = jwtProvider.generateToken(user.getEmail());
         return ResponseEntity.ok(new AuthResponse().build(token, user));
     }
 
     @PostMapping("registration")
-    public ResponseEntity<?> registration(RegistrationRequest registrationRequest) {
+    public ResponseEntity<ResponseMessage> registration(@Valid RegistrationRequest registrationRequest) {
         if (userRepository.existsUserByEmail(registrationRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new ResponseMessage("User with this emails exists"));
         }
