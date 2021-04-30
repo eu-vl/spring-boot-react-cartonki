@@ -1,12 +1,41 @@
 {
   "name": "frontend",
   "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
+  "author": "V|E",
   "scripts": {
+    "serve": "vue-cli-service serve  --port 8081",
+    "build": "vue-cli-service build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "primeflex": "^2.0.0",
+    "primeicons": "^4.1.0",
+    "primevue": "^3.3.5",
+    "register-service-worker": "^1.7.1",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "frontend@1.0.0",
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "readme": "ERROR: No README data found!"
 }
