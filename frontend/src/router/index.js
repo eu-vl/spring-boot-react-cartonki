@@ -11,13 +11,28 @@ const routes =
     {
       path: '/',
       name: 'DefaultLayout',
+      redirect: "/dashboard",
       components: {
         DefaultLayout: DefaultLayout
+      },
+      children: [
+        {
+          path: '/dashboard',
+          component: Home
+        }
+      ],
+      beforeEnter: (to, from, next) => {
+        const user = localStorage.getItem('user');
+        if (user != null) {
+          next()
+        }
+        else next({ path: 'auth' })
       },
     },
     {
       path: '/auth',
       name: "AuthLayout",
+      redirect: "/auth/login",
       components:
       {
         AuthLayout: AuthLayout
@@ -28,6 +43,13 @@ const routes =
           components:
           {
             Login: Login
+          },
+          beforeEnter: (to, from, next) => {
+            const user = localStorage.getItem('user');
+            if (user == null) {
+              next()
+            }
+            else next({ path: '/' })
           }
         },
         {
@@ -35,7 +57,14 @@ const routes =
           components:
           {
             Registration: Registration
-          }
+          },
+          beforeEnter: (to, from, next) => {
+            const user = localStorage.getItem('user');
+            if (user == null) {
+              next()
+            }
+            else next({ path: '/' })
+          },
         }
       ]
     }

@@ -5,7 +5,7 @@
         <form @submit.prevent="submitRegistration()">
           <Card>
             <template #header
-              ><h1 class="p-text-center">Registration</h1></template>
+              ><h1 class="p-text-center">Sign Up</h1></template>
             <template #title>Welcome to our application!</template>
             <template #content>
               <div class="p-field p-grid">
@@ -66,7 +66,7 @@
                 <Button
                   type="submit"
                   icon="pi pi-check"
-                  label="Sign Up"
+                  label="Confirm"
                   class="p-button-success"
                 />
                 <Button

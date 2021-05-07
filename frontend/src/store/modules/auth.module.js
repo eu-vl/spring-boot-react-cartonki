@@ -8,12 +8,11 @@ const auth = {
     actions: {
         login({ commit }, user) {
             AuthService.login(user)
-            router.push("/")
         },
         logout({ commit }) {
             AuthService.logout();
             commit('logout');
-            router.replace("auth/login")
+            router.replace('auth')
         },
         registration({ commit }, user) {
             console.log(user)

@@ -2,10 +2,9 @@
   <div class="login-page">
     <div class="p-grid">
       <div class="p-col-12 p-md-4 p-col-offset-0 p-md-offset-4">
-        <form @submit.prevent="submitRegistration()">
+        <form @submit.prevent="submitLogin()">
           <Card>
-            <template #header
-              ><h1 class="p-text-center">Login</h1></template>
+            <template #header><h1 class="p-text-center">Sign In</h1></template>
             <template #title>Welcome to our application!</template>
             <template #content>
               <div class="p-field p-grid">
@@ -16,7 +15,7 @@
                   <InputText
                     id="email"
                     type="email"
-                    v-model="email"
+                    v-model="user.email"
                     style="width: 100%"
                   />
                 </div>
@@ -29,7 +28,7 @@
                   <InputText
                     id="password"
                     type="password"
-                    v-model="password"
+                    v-model="user.password"
                     style="width: 100%"
                   />
                 </div>
@@ -40,7 +39,7 @@
                 <Button
                   type="submit"
                   icon="pi pi-check"
-                  label="Sign In"
+                  label="Confirm"
                   class="p-button-success"
                 />
                 <Button
@@ -61,6 +60,19 @@
 <script>
 export default {
   name: "Login",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    submitLogin() {
+      this.$store.dispatch("auth/login", this.user);
+    },
+  },
 };
 </script>
 

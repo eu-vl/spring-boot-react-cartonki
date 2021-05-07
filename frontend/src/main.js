@@ -6,29 +6,30 @@ import router from './router'
 import store from './store'
 
 import PrimeVue from 'primevue/config';
-import "primevue/resources/themes/saga-blue/theme.css" 
+import "primevue/resources/themes/saga-blue/theme.css"
 import "primeicons/primeicons.css"
-import "primevue/resources/primevue.min.css" 
+import "primevue/resources/primevue.min.css"
 import 'primeflex/primeflex.css';
 
 import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
 import Button from 'primevue/button'
-
-
+import Menubar from 'primevue/menubar';
+import OrderList from 'primevue/orderlist';
 
 const app = createApp(App);
 
 
 app
-.use(store)
-.use(router)
-.use(PrimeVue, {ripple: true})
+    .use(store)
+    .use(router)
+    .use(PrimeVue, { ripple: true })
 
 
 app
-.component("InputText", InputText)
-.component("Card", Card)
-.component("Button",Button)
-
+    .component("InputText", InputText)
+    .component("Card", Card)
+    .component("Button", Button)
+    .component("Menubar", Menubar)
+    .component("OrderList", OrderList)
 app.mount('#app')
