@@ -4,6 +4,7 @@ import com.backend.configs.jwt.JwtProvider;
 import com.backend.models.User;
 import com.backend.repositories.IUserRepository;
 import com.backend.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class AuthController {
     @PostMapping("registration")
     public ResponseEntity<ResponseMessage> registration(@Valid RegistrationRequest registrationRequest) {
         if (userRepository.existsUserByEmail(registrationRequest.getEmail())) {
-            return ResponseEntity.badRequest().body(new ResponseMessage("User with this emails exists"));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseMessage("User with this emails exists"));
         }
         userService.createUser(registrationRequest);
         return ResponseEntity.ok(new ResponseMessage("You are successfully registered!"));

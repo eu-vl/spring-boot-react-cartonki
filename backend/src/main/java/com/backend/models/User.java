@@ -50,6 +50,9 @@ public class User {
     )
     private Set<Team> teams;
 
+    @OneToOne(mappedBy = "user")
+    private Room room;
+
     public User() {
     }
 

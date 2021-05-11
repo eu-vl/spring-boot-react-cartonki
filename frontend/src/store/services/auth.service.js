@@ -20,9 +20,10 @@ class AuthService {
             },
         })
             .then(function (response) {
-                if (response.status == 200) {
-                    router.replace("login")
+                if (response.status !== 200) {
+                    router.replace("registration")
                 }
+                router.replace("login")
                 console.log(response)
             })
             .catch(function (error) {
