@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -48,7 +49,7 @@ public class User {
     joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "team_id")
     )
-    private Set<Team> teams;
+    private List<Team> teams;
 
     public User() {
     }
@@ -124,11 +125,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Set<Team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(Set<Team> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 }

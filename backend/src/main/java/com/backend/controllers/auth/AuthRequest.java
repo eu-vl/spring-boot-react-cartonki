@@ -1,7 +1,10 @@
 package com.backend.controllers.auth;
 
+@Data
 public class AuthRequest {
+    @NotEmpty
     private String email;
+    @NotEmpty
     private String password;
 
     public AuthRequest() {

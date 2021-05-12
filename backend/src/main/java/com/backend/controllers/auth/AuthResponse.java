@@ -1,12 +1,21 @@
 package com.backend.controllers.auth;
 
 import com.backend.models.User;
+import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
+@Data
 public class AuthResponse {
+    @NotEmpty
     private String token;
+    @NotEmpty
     private Long id;
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String secondName;
+    @NotEmpty
     private String email;
 
     public AuthResponse() {
