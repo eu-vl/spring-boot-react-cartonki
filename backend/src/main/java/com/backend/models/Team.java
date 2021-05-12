@@ -1,7 +1,13 @@
 package com.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
@@ -13,13 +19,25 @@ public class Team {
     @Column(name = "title", nullable = false, unique = true)
     private String title;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "teams")
-    private List<User> users;
+    private Set<User> users = new HashSet<>();
 
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name="lead", nullable=false)
+    private User lead;
+
+    @JsonBackReference
     @OneToMany(mappedBy = "team")
-    private List<Room> rooms;
+    private List<Room> rooms = new ArrayList<>();
 
     public Team() {
+    }
+
+    public Team(String title, User lead) {
+        this.title = title;
+        this.lead = lead;
     }
 
     public Long getId() {
@@ -38,11 +56,11 @@ public class Team {
         this.title = title;
     }
 
-    public List<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
@@ -52,5 +70,13 @@ public class Team {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public User getLead() {
+        return lead;
+    }
+
+    public void setLead(User lead) {
+        this.lead = lead;
     }
 }

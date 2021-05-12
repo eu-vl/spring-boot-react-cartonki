@@ -38,7 +38,7 @@ public class AuthController {
         if (userRepository.existsUserByEmail(registrationRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseMessage("User with this emails exists"));
         }
-        userService.createUser(registrationRequest);
+        userService.saveUser(registrationRequest);
         return ResponseEntity.ok(new ResponseMessage("You are successfully registered!"));
     }
 }

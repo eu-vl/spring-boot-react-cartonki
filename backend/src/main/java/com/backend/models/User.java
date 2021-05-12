@@ -1,12 +1,12 @@
 package com.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -37,22 +37,33 @@ public class User {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "role_user",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "user_team",
-    joinColumns = @JoinColumn(name = "user_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "team_id")
     )
-    private List<Team> teams;
+    private List<Team> teams = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user")
-    private Room room;
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "users")
+    private List<Room> rooms = new ArrayList<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "lead")
+    private List<Team> leadTeams = new ArrayList<>();
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "lead")
+    private List<Room> leadRooms = new ArrayList<>();
 
     public User() {
     }
@@ -62,6 +73,14 @@ public class User {
         this.secondName = secondName;
         this.email = email;
         this.password = password;
+    }
+
+    public List<Room> getLeadRooms() {
+        return leadRooms;
+    }
+
+    public void setLeadRooms(List<Room> leadRooms) {
+        this.leadRooms = leadRooms;
     }
 
     public Long getId() {
@@ -134,5 +153,21 @@ public class User {
 
     public void setTeams(List<Team> teams) {
         this.teams = teams;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
+
+    public List<Team> getLeadTeams() {
+        return leadTeams;
+    }
+
+    public void setLeadTeams(List<Team> leadTeams) {
+        this.leadTeams = leadTeams;
     }
 }

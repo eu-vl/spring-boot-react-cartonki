@@ -1,5 +1,7 @@
 package com.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Role {
     @Column(name = "title", nullable = false, unique = true)
     private String title;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 

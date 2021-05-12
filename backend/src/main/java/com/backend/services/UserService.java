@@ -41,7 +41,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean createUser(RegistrationRequest userFromRequest) {
+    public boolean saveUser(RegistrationRequest userFromRequest) {
         User userDb = iUserRepository.findUserByEmail(userFromRequest.getEmail());
         if (userDb != null) {
             return false;

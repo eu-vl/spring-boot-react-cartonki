@@ -10,7 +10,7 @@ public interface IUserService {
 
     User getUserByEmail(String email);
 
-    boolean createUser(RegistrationRequest userFromRequest);
+    boolean saveUser(RegistrationRequest userFromRequest);
 
     List<User> getAllUsers();
 

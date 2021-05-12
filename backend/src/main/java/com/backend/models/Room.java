@@ -1,6 +1,9 @@
 package com.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,9 +13,12 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "admin_id",nullable = false)
-    private User user;
+    @ManyToMany
+    @JoinTable(
+            name = "user_room",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "room_id"))
+    private List<User> users = new ArrayList<>();
 
     @Column(name = "title", nullable = false, unique = true)
     private String title;
@@ -22,9 +28,27 @@ public class Room {
     private Team team;
 
     @OneToMany(mappedBy = "room")
-    private List<Card> cards;
+    private List<Card> cards = new ArrayList<>();
+
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "lead", nullable = false)
+    private User lead;
 
     public Room() {
+    }
+
+    public Room(String title, User lead){
+        this.title = title;
+        this.lead = lead;
+    }
+
+    public User getLead() {
+        return lead;
+    }
+
+    public void setLead(User lead) {
+        this.lead = lead;
     }
 
     public Long getId() {
@@ -55,12 +79,12 @@ public class Room {
         return cards;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public void setCards(List<Card> cards) {
