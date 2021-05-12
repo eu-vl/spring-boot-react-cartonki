@@ -1,42 +1,28 @@
+import router from "../router";
+
 const menuBar = {
     data() {
         return {
             items: [
                 {
-                    label: "File",
+                    label: "Rooms",
                     icon: "pi pi-fw pi-file",
                     items: [
                         {
                             label: "New",
                             icon: "pi pi-fw pi-plus",
-                            items: [
-                                {
-                                    label: "Bookmark",
-                                    icon: "pi pi-fw pi-bookmark",
-                                },
-                                {
-                                    label: "Video",
-                                    icon: "pi pi-fw pi-video",
-                                },
-                            ],
+                            command:(event)=>this
                         },
                         {
-                            label: "Delete",
-                            icon: "pi pi-fw pi-trash",
-                        },
-                        {
-                            separator: true,
-                        },
-                        {
-                            label: "Export",
-                            icon: "pi pi-fw pi-external-link",
+                            label: "View",
+                            icon: "pi pi-fw pi-table",
                         },
                     ],
                 },
                 {
                     label: "Sign Out",
                     icon: "pi pi-fw pi-sign-out",
-                    command: (event) => this.$store.dispatch("auth/logout")
+                    command: (event) => this.$store.dispatch("auth/logout") && this.$forceUpdate()
                 },
             ],
         };

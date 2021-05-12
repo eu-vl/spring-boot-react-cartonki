@@ -10,6 +10,10 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "admin_id",nullable = false)
+    private User user;
+
     @Column(name = "title", nullable = false, unique = true)
     private String title;
 
@@ -49,6 +53,14 @@ public class Room {
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setCards(List<Card> cards) {

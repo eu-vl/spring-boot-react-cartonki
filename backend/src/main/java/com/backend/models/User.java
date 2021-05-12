@@ -51,6 +51,9 @@ public class User {
     )
     private List<Team> teams;
 
+    @OneToOne(mappedBy = "user")
+    private Room room;
+
     public User() {
     }
 
