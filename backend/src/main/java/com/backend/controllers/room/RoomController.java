@@ -29,7 +29,7 @@ public class RoomController {
     public ResponseEntity<String> create(@Valid RoomRequest roomRequest, @Valid TeamRequest teamRequest) {
         Long user_id = teamRequest.getUser_id();
         User lead = userService.getUserById(user_id);
-        roomService.saveRoom(roomRequest, teamRequest, user_id, lead);
+        roomService.saveRoomWithTeam(roomRequest, teamRequest, user_id, lead);
         return ResponseEntity.ok(new RoomResponse().build(roomRequest.getTitle()));
     }
 

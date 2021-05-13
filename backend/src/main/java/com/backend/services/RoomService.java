@@ -36,7 +36,7 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public boolean saveRoom(RoomRequest r, TeamRequest tr, Long user_id, User lead) {
+    public boolean saveRoomWithTeam(RoomRequest r, TeamRequest tr, Long user_id, User lead) {
         Room room = new Room();
         teamService.saveTeam(tr, user_id, lead);
         Team team = teamService.getTeamByTitle(tr.getTitle());

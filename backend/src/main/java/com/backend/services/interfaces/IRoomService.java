@@ -11,7 +11,7 @@ import java.util.List;
 public interface IRoomService {
     boolean saveRoom(RoomRequest room, Long team_id, User lead);
 
-    boolean saveRoom(RoomRequest r, TeamRequest tr, Long user_id, User lead);
+    boolean saveRoomWithTeam(RoomRequest r, TeamRequest tr, Long user_id, User lead);
 
     List<Room> getAllRooms();
 
