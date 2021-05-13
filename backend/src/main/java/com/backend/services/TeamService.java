@@ -25,7 +25,7 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public boolean saveTeam(TeamRequest team, Long userId, User lead) {
+    public boolean saveTeam(TeamRequest team, Long userId) {
         Team curTeam = new Team();
         User curUser = iUserRepository.findUserById(userId);
         curTeam.setLead(curUser);
