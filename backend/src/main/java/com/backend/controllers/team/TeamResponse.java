@@ -11,17 +11,14 @@ public class TeamResponse {
     @NotEmpty
     private String title;
 
-    private Long user_id;
+    private Long userId;
 
 
     public TeamResponse() {
     }
 
-    public TeamResponse build(String title, Long user_id) {
-        TeamResponse response = new TeamResponse();
-        response.title = title;
-        response.user_id = user_id;
-        return response;
+    public String build(String title) {
+        return String.format("Team with name '%s' has been created", title);
     }
 
     public String getTitle() {
@@ -32,11 +29,11 @@ public class TeamResponse {
         this.title = title;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

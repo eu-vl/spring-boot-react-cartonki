@@ -7,36 +7,36 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class RoomRequest {
     @NotEmpty
-    private String RoomTitle;
+    private String roomTitle;
 
-    private Long team_id;
+    private Long teamId;
 
-    private Long RoomLead_id;
+    private Long roomLeadId;
 
     public RoomRequest() {
     }
 
-    public String getTitle() {
-        return RoomTitle;
+    public String getRoomTitle() {
+        return roomTitle;
     }
 
-    public void setTitle(String title) {
-        this.RoomTitle = title;
+    public void setRoomTitle(String roomTitle) {
+        this.roomTitle = roomTitle;
     }
 
-    public Long getTeam_id() {
-        return team_id;
+    public Long getTeamId() {
+        return teamId;
     }
 
-    public void setTeam_id(Long team_id) {
-        this.team_id = team_id;
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 
-    public Long getLead_id() {
-        return RoomLead_id;
+    public Long getRoomLeadId() {
+        return roomLeadId;
     }
 
-    public void setLead_id(Long lead_id) {
-        this.RoomLead_id = lead_id;
+    public void setRoomLeadId(Long roomLeadId) {
+        this.roomLeadId = roomLeadId;
     }
 }

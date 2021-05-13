@@ -25,21 +25,21 @@ public class TeamController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<TeamResponse> create(@Valid TeamRequest teamRequest) {
-        Long user_id = teamRequest.getUser_id();
+    public ResponseEntity<String> create(@Valid TeamRequest teamRequest) {
+        Long user_id = teamRequest.getUserId();
         User lead = userService.getUserById(user_id);
         teamService.saveTeam(teamRequest, user_id, lead);
-        return ResponseEntity.ok(new TeamResponse().build(teamRequest.getTitle(), teamRequest.getUser_id()));
+        return ResponseEntity.ok(new TeamResponse().build(teamRequest.getTeamTitle()));
     }
 
-    @PostMapping("addUser")
-    public ResponseEntity<TeamResponse> addUser(@Valid TeamRequest teamRequest) {
-        Team curTeam = teamService.getTeamByTitle(teamRequest.getTitle());
-        teamService.addUserToTeam(curTeam, userService.getUserById(teamRequest.getUser_id()));
-        return ResponseEntity.ok(new TeamResponse().build(teamRequest.getTitle(), teamRequest.getUser_id()));
+    @PostMapping("add-user")
+    public ResponseEntity<String> addUser(@Valid TeamRequest teamRequest) {
+        Team curTeam = teamService.getTeamByTitle(teamRequest.getTeamTitle());
+        teamService.addUserToTeam(curTeam, userService.getUserById(teamRequest.getUserId()));
+        return ResponseEntity.ok(new TeamResponse().build(teamRequest.getTeamTitle()));
     }
 
-    @GetMapping("getAll")
+    @GetMapping("get-all")
     public List<Team> getAllTeams(){
         return teamService.getAllTeams();
     }

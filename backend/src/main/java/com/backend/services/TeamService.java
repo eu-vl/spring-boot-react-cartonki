@@ -25,15 +25,15 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public boolean saveTeam(TeamRequest team, Long user_id, User lead) {
+    public boolean saveTeam(TeamRequest team, Long userId, User lead) {
         Team curTeam = new Team();
-        User curUser = iUserRepository.findUserById(user_id);
+        User curUser = iUserRepository.findUserById(userId);
         curTeam.setLead(curUser);
-        curTeam.setTitle(team.getTitle());
+        curTeam.setTitle(team.getTeamTitle());
         iTeamRepository.save(curTeam);
-        curTeam = iTeamRepository.findTeamByTitle(team.getTitle());
+        curTeam = iTeamRepository.findTeamByTitle(team.getTeamTitle());
         addUserToTeam(curTeam, curUser);
-        return iTeamRepository.findTeamByTitle(team.getTitle()) != null;
+        return iTeamRepository.findTeamByTitle(team.getTeamTitle()) != null;
     }
 
     @Override
@@ -45,7 +45,6 @@ public class TeamService implements ITeamService {
     public Team getTeamById(Long id) {
         return iTeamRepository.findTeamById(id);
     }
-
 
     @Override
     public List<Team> getAllTeams() {

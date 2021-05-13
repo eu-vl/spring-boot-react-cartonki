@@ -8,36 +8,36 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class TeamRequest {
     @NotEmpty
-    private String TeamTitle;
+    private String teamTitle;
 
-    private Long user_id;
+    private Long userId;
 
-    private Long TeamLead_id;
+    private Long teamLeadId;
 
     public TeamRequest() {
     }
 
-    public String getTitle() {
-        return TeamTitle;
+    public String getTeamTitle() {
+        return teamTitle;
     }
 
-    public void setTitle(String title) {
-        this.TeamTitle = title;
+    public void setTeamTitle(String teamTitle) {
+        this.teamTitle = teamTitle;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getLead_id() {
-        return TeamLead_id;
+    public Long getTeamLeadId() {
+        return teamLeadId;
     }
 
-    public void setLead_id(Long lead_id) {
-        this.TeamLead_id = lead_id;
+    public void setTeamLeadId(Long teamLeadId) {
+        this.teamLeadId = teamLeadId;
     }
 }
