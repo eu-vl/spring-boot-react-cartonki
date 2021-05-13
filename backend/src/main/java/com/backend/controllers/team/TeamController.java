@@ -26,9 +26,9 @@ public class TeamController {
 
     @PostMapping("create")
     public ResponseEntity<String> create(@Valid TeamRequest teamRequest) {
-        Long user_id = teamRequest.getUserId();
-        User lead = userService.getUserById(user_id);
-        teamService.saveTeam(teamRequest, user_id);
+        Long userId = teamRequest.getUserId();
+        User lead = userService.getUserById(userId);
+        teamService.saveTeam(teamRequest, userId);
         return ResponseEntity.ok(new TeamResponse().build(teamRequest.getTeamTitle()));
     }
 
