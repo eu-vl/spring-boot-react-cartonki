@@ -1,14 +1,20 @@
 <template>
-  <div class="rooms-table p-mt-3">
-    <OrderList v-model="data" dataKey="id">
+  <div class="rooms-table" style="overflow: auto;">
+    <OrderList
+      v-model="data"
+      dataKey="id"
+      breakpoint="200px"
+    >
       <template #header> <strong>Rooms</strong> </template>
       <template #item="data">
-        <div class="p-caritem">
-          <div style="display: flex; justify-content: space-between">
+        <div class="p-caritem"  >
+          <div style="display: flex; justify-content: space-between;" >
             <span class="p-caritem-vin"
               ><b>{{ data.item.id }}</b></span
             >
-            <span style="min-width: 300px; max-width: 300px;">{{ data.item.title }}</span>
+            <span style="min-width: 300px; max-width: 300px">{{
+              data.item.title
+            }}</span>
             <Button
               icon="pi pi-reply"
               label="Enter"
@@ -61,5 +67,4 @@ export default {
 .p-orderlist-controls {
   display: none !important;
 }
-
 </style>

@@ -1,18 +1,19 @@
 <template>
   <div class="home">
-    <div class="p-grid">
-      <div class="p-col-7">
+    <div class="p-grid p-mt-3">
+      <div class="p-col-12 p-xl-7">
         <rooms-table />
       </div>
-      <div class="p-col-5">Lorem ipsum dolor sit amet.</div>
+      <div class="p-col-12 p-xl-5"><menu-card/></div>
     </div>
   </div>
 </template>
 
 <script>
+import MenuCard from '../components/home/menuCard.vue';
 import roomsTable from "../components/home/roomsTable.vue";
 export default {
-  components: { roomsTable },
+  components: { roomsTable, MenuCard },
   name: "Home",
 };
 </script>
